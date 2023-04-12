@@ -1,25 +1,30 @@
+import * as React from 'react';
+import Box from '@mui/material/Box';
+import TextField from '@mui/material/TextField';
 import { useDispatch } from 'react-redux';
-import { onFilter } from 'components/Redux/contacts/contactsSlice';
+import { onFilter } from 'Redux/contacts/contactsSlice';
 
-const Filter = () => {
+export default function Filter() {
   const dispatch = useDispatch();
-
+  //
   const filteredContacts = e => {
     dispatch(onFilter(e.currentTarget.value.toLowerCase()));
   };
-
   return (
-    <div>
-      <h2>Find contacts by name</h2>
-      <label>
-        <input
-          onChange={filteredContacts}
-          type="text"
-          pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
-        />
-      </label>
-    </div>
+    <Box
+      component="form"
+      sx={{
+        '& > :not(style)': { m: 1, width: '25ch' },
+      }}
+      noValidate
+      autoComplete="off"
+    >
+      <TextField
+        onChange={filteredContacts}
+        id="standard-basic"
+        label="Find contacts by name"
+        variant="standard"
+      />
+    </Box>
   );
-};
-
-export default Filter;
+}

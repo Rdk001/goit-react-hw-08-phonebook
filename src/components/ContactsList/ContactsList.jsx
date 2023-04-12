@@ -1,15 +1,8 @@
 import { useEffect } from 'react';
-import { Span, DeleteItem } from './ContactList.styled';
+import { Span, DeleteItem, List, ListItem } from './ContactList.styled';
 import { useSelector, useDispatch } from 'react-redux';
-import {
-  selectContacts,
-  selectFilter,
-  selectIsLoading,
-} from 'components/Redux/selectors';
-import {
-  deleteContact,
-  fetchContacts,
-} from 'components/Redux/contacts/operations';
+import { selectContacts, selectFilter, selectIsLoading } from 'Redux/selectors';
+import { deleteContact, fetchContacts } from 'Redux/contacts/operations';
 import Loader from 'components/Loader/Loader';
 
 const ContactsList = () => {
@@ -32,18 +25,18 @@ const ContactsList = () => {
     <div>
       {isLoading && <Loader />}
       {filtered?.length > 0 && (
-        <ul>
+        <List>
           {filtered.map(({ id, name, phone }) => (
-            <li key={id}>
+            <ListItem key={id}>
               <Span>
                 {name}: {phone}
               </Span>
               <DeleteItem onClick={() => handleDelete(id)} type="button">
                 Delete
               </DeleteItem>
-            </li>
+            </ListItem>
           ))}
-        </ul>
+        </List>
       )}
     </div>
   );

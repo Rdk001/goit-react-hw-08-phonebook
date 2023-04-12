@@ -1,7 +1,13 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { FormContainer, Form, Text, Input, Submit } from './ContactForm.styled';
-import { addContact } from 'components/Redux/contacts/operations';
-import { selectContacts } from 'components/Redux/selectors';
+import {
+  FormContainer,
+  Form,
+  Text,
+  InputForm,
+  Submit,
+} from './ContactForm.styled';
+import { addContact } from 'Redux/contacts/operations';
+import { selectContacts } from 'Redux/selectors';
 
 const ContactForm = () => {
   const contacts = useSelector(selectContacts);
@@ -26,7 +32,7 @@ const ContactForm = () => {
       <Form onSubmit={handleSubmit}>
         <label>
           <Text>Name</Text>
-          <Input
+          <InputForm
             type="text"
             name="name"
             pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
@@ -36,7 +42,7 @@ const ContactForm = () => {
         </label>
         <label>
           <Text>Number</Text>
-          <Input
+          <InputForm
             type="tel"
             name="number"
             pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
