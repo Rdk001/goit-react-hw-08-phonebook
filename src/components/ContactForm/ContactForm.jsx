@@ -6,11 +6,12 @@ import {
   InputForm,
   Submit,
 } from './ContactForm.styled';
-import { addContact } from 'Redux/contacts/operations';
-import { selectContacts } from 'Redux/selectors';
+import { addContact } from 'Redux/contacts/contacts-operations';
+import { selectContacts } from 'Redux/contacts/contacts-selectors';
 
 const ContactForm = () => {
   const contacts = useSelector(selectContacts);
+
   const dispatch = useDispatch();
 
   const handleSubmit = e => {
@@ -21,7 +22,7 @@ const ContactForm = () => {
       contact => contact.name.toLowerCase() === name.value.toLowerCase()
     )
       ? alert(`${name.value} is already in contacts`)
-      : dispatch(addContact({ name: name.value, phone: number.value }));
+      : dispatch(addContact({ name: name.value, number: number.value }));
 
     name.value = '';
     number.value = '';
